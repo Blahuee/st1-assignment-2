@@ -1,0 +1,5 @@
+Before using AI, I built and improved my own prototype by adding user input, functions, lists, dictionaries and basic error handling. Testing helped me identify limitations such as duplicate bookings, invalid input and data being lost when the program closes.
+
+AI helped confirm these issues and suggested improvements such as duplicate checking, exception handling, and date/time validation. It also made assumptions, such as treating blank name validation as sufficient.
+
+I verified the AI's suggestions by comparing them with my code and testing whether the issues actually occurred. I still needed to decide which improvements were appropriate, implement them, and test the final solution. This showed me that AI can assist with coding, but I still need to understand, evaluate and verify the suggested solutions.

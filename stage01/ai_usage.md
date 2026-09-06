@@ -1,217 +1,217 @@
 # Prompt 1
 
-As a Python tutor, I'll explain the program at a beginner level, point out some limitations, suggest practical improvements, and then test your understanding with two questions.
+### As a Python tutor, I'll explain the program at a beginner level, point out some limitations, suggest practical improvements, and then test your understanding with two questions.
+
+This explanation is written as a tutor-style review. I'll focus on what the code currently does, where it could be improved, and a few questions to help you check your understanding.
 
 ## 1. What the code does
 
-This program simulates a simple clinic appointment booking system called SmartCare.
+The program is a simple appointment-booking system that stores appointments in a Python list.
 
-**Part A: Basic output using variables**
-
-The first section:
-
-print("Welcome to SmartCare: Community Clinic Appointment Booking System!")
-
-
-displays a welcome message.
-
-Next, the program stores information for two appointments in separate variables:
-
+### create_appointment() function
 ```python
-patient1_name = 'Alice Smith'
-practitioner1_name = 'Dr. John Doe'
-appointment1_time = '2024-07-20 10:00 AM
+def create_appointment(patient_name, practitioner_name, appointment_time):
 ```
 
-and
-```python
-patient2_name = 'Bob Johnson'
-practitioner2_name = 'Dr. Jane Roe'
-appointment2_time = '2024-07-20 11:30 AM
-```
+This function receives three pieces of information:
 
-These values are then displayed using f-strings:
+- Patient name
+- Practitioner name
+- Appointment time
 
-```python
-print(f"Patient: {patient1_name} | Practitioner: {practitioner1_name} | Time: {appointment1_time}")
-```
-
-An f-string allows variables to be inserted directly into text using {}.
-
-**Part B: Using a list and dictionary**
-
-The program creates an empty list:
+It then validates the inputs:
 
 ```python
-appointments = []
+if not patient_name:
+    raise ValueError("Patient name cannot be empty")
 ```
 
-This list will store all appointment records. Inside the `book_appointment()` function, a dictionary is created:
+Similar checks are performed for the practitioner name and appointment time.
+
+These checks ensure that empty values are not accepted. If any field is empty, the program raises a `ValueError` and stops execution unless the error is handled elsewhere.
+
+The function then creates a dictionary:
 
 ```python
 appointment = {
-    "patient": patient_name,
-    "practitioner": practitioner_name,
-    "time": appointment_time
+    "patient_name": patient_name,
+    "practitioner_name": practitioner_name,
+    "appointment_time": appointment_time
 }
 ```
 
-A dictionary stores data as key-value pairs.
+A dictionary is used to group related appointment information together using key-value pairs.
 
-Example:
-
-```python
-{
-    "patient": "Alice Smith",
-    "practitioner": "Dr. John Doe",
-    "time": "2024-07-20 10:00 AM"
-}
-```
-
-The dictionary is added to the list using:
+The appointment is added to the global list:
 
 ```python
 appointments.append(appointment)
 ```
 
-**Part C: Functions**
+Finally, the appointment dictionary is returned:
 
-The program contains two functions:
+```python
+return appointment
+```
 
+### list_appointments() function
 
-**`book_appointment()`**
+```python
+def list_appointments():
+```
 
-This function:
-1. Receives appointment details.
-2. Checks that the patient name is not empty.
-3. Creates a dictionary containing the appointment details.
-4. Stores the appointment in the appointments list. 
+This function displays all stored appointments.
 
-**`display_appointments()`**
+First, it checks whether the list is empty:
 
-This function:
+```python
+if not appointments:
+```
 
-1. Checks whether any appointments exist.
-2. Prints a message if the list is empty.
-3. Otherwise loops through all appointments and displays them.
+If no appointments exist, it prints:
 
-The loop:
+```python
+"No appointments recorded."
+```
+
+and exits the function.
+
+If appointments are present, the function loops through each appointment:
 
 ```python
 for appointment in appointments:
 ```
 
-processes each appointment one at a time.
-
-**Program execution**
-
-The following statements:
+and prints the details in a readable format:
 
 ```python
-book_appointment('Alice Smith', 'Dr. John Doe', '2024-07-20 10:00 AM')
-book_appointment('Bob Johnson', 'Dr. Jane Roe', '2024-07-20 11:30 AM')
+print(f"Patient: {appointment['patient_name']} | Practitioner: {appointment['practitioner_name']} | Time: {appointment['appointment_time']}")
 ```
 
-add two appointments to the list.
+### Main program
 
-Finally:
+The list is created:
+
 ```python
-display_appointments()
+appointments = []
 ```
 
-prints all stored appointments.
+User input is collected:
 
+```python
+patient_name = input(...)
+practitioner_name = input(...)
+appointment_time = input(...)
+```
 
+The appointment is created:
+
+```python
+create_appointment(patient_name, practitioner_name, appointment_time)
+```
+
+Finally, all appointments are displayed:
+
+```python
+list_appointments()
+```
 
 ## 2. Three limitations
+### Limitation 1: No validation of the appointment format
 
-**1. Limited input validation**
+The program checks that an appointment time exists, but it does not verify that the time is actually valid.
 
-The program only checks whether the patient name is empty.\
-For example: 
-
-```python
-book_appointment("Alice", "", "")
+For example, the user could enter:
+```
+banana
 ```
 
-would still be accepted even though important information is missing.
+or
+```
+99/99/9999
+```
 
----
+and the program would still accept it.
 
-**2. No prevention of scheduling conflicts**
+### Limitation 2: No error handling
 
-  - The system allows multiple appointments at the same time.
-  - For example, two patients could be booked with the same practitioner at exactly 10:00 AM.
+The function raises a ValueError when a field is empty.
 
----
+```python
+raise ValueError(...)
+```
 
-**3. Data is not saved permanently**
+However, the main program does not use a `try/except` block to catch the error.
 
-  - Appointments exist only while the program is running.
-  - If the program closes, the appointment list is lost because it is stored only in memory.
+As a result, the program may crash and display a traceback to the user.
+
+### Limitation 3: Data is not saved permanently
+
+Appointments are stored only in:
+
+```python
+appointments = []
+```
+
+This list exists only while the program is running.
+
+When the program closes, all appointment information is lost.
 
 ## 3. Suggested improvements
-**Improve validation**
 
-  Check that:
-  - Patient name is provided.
-  - Practitioner name is provided.
-  - Appointment time is provided.
-  - Date and time follow a valid format.
+Without rewriting the whole application, here are some practical improvements.
 
----
+### Improvement 1: Validate date and time input
 
-**Detect double bookings**
+Use Python's datetime module to check whether the entered appointment time follows the expected format.
 
-Before adding a new appointment, check whether the practitioner already has an appointment scheduled at that time.
+Benefits:
 
-This would make the booking system more realistic.
+- Prevents invalid dates
+- Improves data quality
+- Reduces user errors
+### Improvement 2: Add exception handling
 
----
+Wrap the appointment creation code in a try/except block.
 
-**Save data to a file**
+Benefits:
 
-Store appointments in a file such as:
+- Prevents program crashes
+- Provides friendly error messages
+- Improves user experience
+### Improvement 3: Check for duplicate appointments
 
-- JSON
-- CSV
-- Database (for larger systems)
+Before adding an appointment, check whether the same patient already has an appointment at the same time.
 
-This would allow appointments to remain available after the program is closed.
+Benefits:
 
----
+- Avoids accidental duplicates
+- Makes scheduling more reliable
 
-**Add appointment management features**
+### Additional possible improvements
+- Allow multiple appointments to be entered before listing them.
+- Sort appointments by date and time.
+- Store appointments in a text file, CSV file, or database.
+- Trim extra spaces from user input using .strip().
+- Assign each appointment a unique ID.
 
-Possible additions include:
+## 4. Key programming concepts demonstrated
 
-- Cancelling appointments.
-- Updating appointment times.
-- Searching for a patient.
-- Viewing appointments for a specific practitioner.
+This example demonstrates several important introductory programming concepts:
 
-These features would make the system more useful without completely redesigning it.
-
-## 4. Summary
-
-This code demonstrates several important introductory Python concepts:
-
-- Variables
-- Lists
-- Dictionaries
 - Functions
+- Parameters and arguments
 - Input validation
-- Loops
-- f-strings
+- Dictionaries
+- Lists
+- List operations (append)
+- Loops (for)
+- Conditional statements (if)
+- Returning values (return)
+- Exceptions (ValueError)
 
-It is a good example of moving from storing data in individual variables to using data structures and functions to make the code more scalable.
-
-## 5. Check your understanding
-**Question 1**
-
-Why is a list used for appointments instead of creating separate variables such as appointment1, appointment2, appointment3, and so on?
-
-**Question 2**
+## 5. Questions to test your understanding
+### Question 1
 
 What is the purpose of this line?
 
@@ -219,9 +219,20 @@ What is the purpose of this line?
 appointments.append(appointment)
 ```
 
-Specifically, what would happen if this line were removed from the `book_appointment()` function?
+Specifically, what would happen if this line were removed from the program?
+
+### Question 2
+
+The code checks:
+
+```python
+if not patient_name:
+```
+
+Why does this prevent an empty string ("") from being accepted, and what exception is raised when the condition is true?
 
 # Prompt 2
+### Create a simple beginner-friendly Python function that stores patient name, practitioner name and appointment time. Do not use a database or GUI.
 
 Here's a simple beginner-friendly function that stores a patient name, practitioner name, and appointment time in a dictionary and returns it.
 
@@ -246,14 +257,14 @@ appointment1 = book_appointment(
 print(appointment1)
 ```
 
-**How it works**
+**How it works**\
 The function `book_appointment()` accepts three pieces of information:
 - `patient_name`
 - `practitioner_name`
-- `appointment_time`\
-- It stores them in a **dictionary**.
-- The dictionary is returned and stored in **appointment1**.
-- **print(appointment1)** displays the appointment details.
+- `appointment_time`
+- It stores them in a dictionary.
+- The dictionary is returned and stored in `appointment1`.
+- `print(appointment1)` displays the appointment details.
 
 **Example output**
 ```python
