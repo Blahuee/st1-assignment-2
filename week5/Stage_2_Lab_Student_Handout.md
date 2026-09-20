@@ -1,2 +1,10 @@
 # Reflection
 In 150-250 words: What did AI notice that you missed? What did AI invent or overreach on? Which requirement changed after review? Why must requirements have evidence?
+
+The AI review identified several issues that I had not initially noticed. The most important were the inconsistency between FR-08 and US-04 regarding who can view appointment schedules, the ambiguity of terms such as “practitioner details” and “search for a patient,” and the lack of measurable criteria in non-functional requirements such as “acceptable time” and “accurate records.” These observations highlighted areas that could cause confusion during implementation or testing.
+
+Some AI suggestions overreached beyond the evidence available. For example, the suggestion that appointment duration needed to be defined assumed that appointments might vary in length, even though the requirements never state this. AI also questioned whether patients should be identified by something other than name, which may be unnecessary if the assignment intentionally simplifies patient identification. Such suggestions were useful as validation questions but should not be treated as confirmed defects.
+
+One requirement changed after review: the use of “authorised staff” in FR-01, FR-06, and FR-09 was replaced with “staff.” This change removed an inconsistency because the requirements did not define authorised roles. A grammar issue in FR-11 was also corrected.
+
+Requirements reviews must be supported by evidence because evidence distinguishes genuine issues from assumptions. Without evidence, reviewers may invent requirements that the client never requested. Evidence ensures feedback remains objective, traceable to the specification, and useful for stakeholders when deciding whether to accept, reject, modify, or further investigate a suggestion.

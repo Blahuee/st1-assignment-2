@@ -43,17 +43,17 @@ Management wants a small, maintainable system for patients, practitioners and ap
 - Exact retention rules
 
 # Part C - Functional Requirements: AI OFF
-**FR-01:** The system shall allow authorised staff to register a new patient.\
+**FR-01:** The system shall allow staff to register a new patient.\
 **FR-02:** The system shall prevent cancelled appointments from being treated as active bookings.\
 **FR-03:** The system shall allow staff to update patient details.\
 **FR-04:** The system shall allow staff to search for a patient.\
 **FR-05:** The system shall allow staff to record practitioner details.\
-**FR-06:** The system shall allow authorised staff to create an appointment.\
+**FR-06:** The system shall allow staff to create an appointment.\
 **FR-07:** The system shall prevent appointments from being created when the practitioner already has an active appointment at that time.\
 **FR-08:** The system shall allow staff to view a practitioner’s appointment schedule.\
-**FR-09:** The system shall allow authorised staff to cancel an active appointment.\
+**FR-09:** The system shall allow staff to cancel an active appointment.\
 **FR-10:** The system shall retain cancelled appointments in the appointment history.\
-**FR-11:** The system shall display each appointment’s status.
+**FR-11:** The system shall reject a booking if the practitioner, time/date or patient is missing.
 
 # Part D - Non-Functional Requirements: AI OFF
 **NFR-01 – Reliability:** The system should maintain accurate patient, practitioner, and appointment records during normal operation.\
@@ -87,31 +87,21 @@ Management wants a small, maintainable system for patients, practitioners and ap
 **WHEN:** staff try to create another appointment\
 **THEN:** the system rejects the booking and displays a conflict message
 
+### Assumptions and Open Questions
+- Assumed: Patients are identified by name only
 # Part F - AI Requirements Review:
 **Prompt:** Act as a software requirements reviewer. Review the SmartCare requirements for ambiguity, inconsistency, missing clarification questions and testability. Do NOT invent new client requirements. For every suggestion, state whether it is based on evidence or is only a question/assumption requiring validation.
 
 # Part G - VERIFY the AI Review
 Classify each significant AI suggestion as Accepted, Modified, Rejected, or Unverified. Explain the evidence used.
 
-|                     AI Suggestion                      | Classification |                                                   Evidence Used                                                   |
-| :----------------------------------------------------: | :------------: | :---------------------------------------------------------------------------------------------------------------: |
-|    The meaning of “patient management” is unclear.     |    Accepted    |                 The brief mentions patient management but does not define its specific functions.                 |
-|  The meaning of “practitioner management” is unclear.  |    Accepted    |                  The brief does not state which practitioner details or functions are required.                   |
-|  The meaning of “appointment management” is unclear.   |    Accepted    |                            The brief does not clearly list all appointment operations.                            |
-|        “Simple software system” is subjective.         |    Accepted    |                                  The word “simple” has no measurable definition.                                  |
-|        “Manageable application” is subjective.         |    Accepted    |                 The brief does not define how maintainability or manageability will be measured.                  |
-| “Practitioner” and “GP” may refer to different groups. |   Unverified   |  The wording is unclear, but the provided information does not confirm that different practitioner types exist.   |
-|       Appointment status management is required.       |    Accepted    |                  Inconsistent appointment status information is identified as a current problem.                  |
-|     Patient information fields must be clarified.      |    Accepted    |                         The brief does not specify which patient details must be stored.                          |
-|   Practitioner information fields must be clarified.   |    Accepted    |                                The required practitioner details are not provided.                                |
-|        Appointment duration must be clarified.         |    Accepted    |                Duration affects whether appointment times conflict, but no duration is specified.                 |
-|       Duplicate booking rules must be clarified.       |    Accepted    |         Duplicate bookings are a stated problem, but the exact definition of a duplicate is not provided.         |
-|   Practitioner availability rules must be clarified.   |    Accepted    |                 The brief does not explain how practitioner availability is recorded or checked.                  |
-|         Cancellation rules must be clarified.          |    Accepted    |              The brief identifies appointment management but does not define cancellation behaviour.              |
-|    Appointment history contents must be clarified.     |    Accepted    |            Limited appointment history is identified, but the information to retain is not specified.             |
-|         Operational reports must be clarified.         |   Unverified   |    Reports are mentioned as a current difficulty, but required reports are not confirmed as a system feature.     |
-|        User access and roles must be clarified.        |    Accepted    |                The stakeholders are known, but their specific system permissions are not defined.                 |
-|   The number of concurrent users must be clarified.    |   Unverified   |                No evidence indicates that simultaneous user numbers are a significant requirement.                |
-| Existing spreadsheet data migration must be clarified. |   Unverified   |          The current use of spreadsheets is stated, but migration into the new system is not requested.           |
-|      Patient record searching must be clarified.       |    Accepted    | Difficulty finding patient information is a stated problem, although the required search methods are not defined. |
-| The requirements lack measurable acceptance criteria.  |    Accepted    |     Terms such as “simple,” “manageable,” and “basic” are not objectively testable without further criteria.      |
+|                            AI Suggestion                            | Classification |                                                                 Evidence Used                                                                  |                                                                                                                                                         Justification                                                                                                                                                          |
+| :-----------------------------------------------------------------: | :------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|              Define how staff can search for patients               |   Unverified   |                                     FR-04 states: "The system shall allow staff to search for a patient."                                      |                                                                                                 There is insufficient information to determine whether searching by name only is acceptable. Client confirmation is required.                                                                                                  |
+|         Define the practitioner data that must be recorded.         |   Unverified   |                                  FR-05 states: "The system shall allow staff to record practitioner details."                                  |                                                                                                        The requirement remains incomplete from an implementation perspective, but no client decision has been provided.                                                                                                        |
+|                 Specify appointment duration rules.                 |   Unverified   | FR-07 states: "The system shall prevent appointments from being created when the practitioner already has an active appointment at that time." |                                                                                             The review identified a possible ambiguity, but there is no evidence showing whether appointments are fixed-length or variable-length.                                                                                             |
+|     Clarify who is allowed to view schedules. (FR-08 and US-04)     |   Unverified   |           FR-08: "allow staff to view a practitioner's appointment schedule" US-04: "As a practitioner, I want to view my schedule"            |                                                                                                The potential inconsistency still exists because the requirements do not explicitly state whether both roles can view schedules.                                                                                                |
+|       Clarify how duplicate patients are identified. (NFR-02)       |    Modified    |                     NFR-02 states: "prevent duplicate patients". Assumption states: "Patients are identified by name only"                     | The original review questioned how duplicate patients were identified. The assumption partially answers the question by indicating that names are used. However, the assumption introduces a new risk because different patients may share the same name. Therefore, the concern has been modified rather than fully resolved. |
+|               Confirm that patient names are unique.                |   Unverified   |                            Assumption: "Patients are identified by name only". NFR-02: "prevent duplicate patients"                            |                                                                                                         No evidence confirms that patient names are unique. This remains a question requiring stakeholder validation.                                                                                                          |
+| Replace "acceptable time" with a measurable response time. (NFR-06) |   Unverified   |                                         NFR-06 states: "provide a response within an acceptable time"                                          |                                                                                                                           The issue remains because no measurable performance target has been added.                                                                                                                           |
+|               Define measurable reliability criteria.               |   Unverified   |                   NFR-01 states: "maintain accurate patient, practitioner, and appointment records during normal operation"                    |                                                                                                                             The requirement remains subjective and difficult to test objectively.                                                                                                                              |
