@@ -1,2 +1,4 @@
 # Reflection
-What modelling decision was hardest? Where did AI over-design? What evidence supported your final choices?
+**What modelling decision was hardest? Where did AI over-design? What evidence supported your final choices?**
+
+The hardest modelling decision was deciding whether Clinic should be included as a class, as the requirements mainly focused on patients, practitioners, and appointments. I found that the AI tended to over-design the system by suggesting classes such as PatientManager, AppointmentManager, and ClinicController, which are more related to implementation than the business domain. My final design choices were based on the requirements, CRC cards, and relationship analysis, which clearly supported Patient, Practitioner, and Appointment as the core classes. I also verified that my Python skeleton matched the UML diagram by ensuring each class, attribute, and method in the UML had a corresponding representation in the code, helping keep the design consistent and traceable from requirements to implementation.
