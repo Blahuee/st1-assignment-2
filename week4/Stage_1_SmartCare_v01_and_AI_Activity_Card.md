@@ -53,21 +53,23 @@ Creates appointment with the inputted patient name, practitioner and appointment
 Act as a tutor. Explain this code and identify potential problems. Do not provide a complete replacement. Ask me questions that help me reason about the solution. 
 
 **Evaluate**
-|          Suggestion            | Useful | Unclear | Incorrect | Out of scope |
-| :---------------------------:  | :----: | :-----: | :-------: | :----------: |
-|     Whitespace-only input      |   X    |         |           |              |
-| Appointment time is just text  |   X    |         |           |              |
-|Program crashes on invalid input|   X    |         |           |              |
-| Duplicate appointments         |   X |
-| Data only exists while the program runs | X|
+|               Suggestion                | Useful | Unclear | Incorrect | Out of scope |
+| :-------------------------------------: | :----: | :-----: | :-------: | :----------: |
+|          Whitespace-only input          |   X    |         |           |              |
+|      Appointment time is just text      |   X    |         |           |              |
+|    Program crashes on invalid input     |   X    |         |           |              |
+|         Duplicate appointments          |   X    |
+| Data only exists while the program runs |   X    |
 
 ## Decide
 **For each significant suggestion: Accept / Modify / Reject / Keep unverified.**
-- Whitespace-Only input: Accept
-- Appointment time is just text: Accept 
-- Program crashes on invalid input: Accept
-- Duplicate Appointments: Accept
-- Data only exists while the program is running: Keep unverified
+|                  Suggestion                   | Action |                                                                       Reason                                                                        |
+| :-------------------------------------------: | :----: | :-------------------------------------------------------------------------------------------------------------------------------------------------: |
+|             Whitespace-Only input             | Accept |           This is useful because the code checks whether the patient name is empty, but " " would still be accepted as a non-empty string           |
+|         Appointment time is just text         | Accept |               The appointment time is stored as a string, so the program does not check whether the user entered a valid date or time               |
+|       Program crashes on invalid input        | Accept |  The ValueError is raised when the patient name is empty, but there is no user input handling to catch the error and allow the user to correct it   |
+|            Duplicate appointments             | Accept |                    The program does not check whether an appointment already exists, so duplicate appointments could be created                     |
+| Data only exists while the program is running | Accept | The appointments are stored in the appointments list in memory and are not saved to a file or database, so the data is lost when the program closes |
 
 ## Verify 
 - Run the code

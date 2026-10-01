@@ -12,7 +12,7 @@ def book_appointment(patient_name, practitioner_name, appointment_time):
         "practitioner": practitioner_name, 
         "time": appointment_time 
     }
-appointments.append(appointment) 
+    appointments.append(appointment)
 
 def display_appointments(): 
     if not appointments: 

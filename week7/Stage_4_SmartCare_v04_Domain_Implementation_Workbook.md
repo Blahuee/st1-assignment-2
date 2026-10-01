@@ -20,7 +20,6 @@
 |   Appointment → Patient association    |       `self.patient = patient`       |     Yes      |   Appointment references Patient    |
 | Appointment → Practitioner association |  `self.practitioner = practitioner`  |     Yes      | Appointment references Practitioner |
 
-
 # Domain Invariants
 |    Class     |                 Invariant / Rule                 |                  How Protected                   |
 | :----------: | :----------------------------------------------: | :----------------------------------------------: |
@@ -33,7 +32,6 @@
 | Appointment  |    Status must be a valid appointment status     |         Use an `AppointmentStatus` enum          |
 | Appointment  | Cancelled appointments cannot be cancelled again | Checked inside `cancel()` before changing status |
 
-
 # Composition / Inheritance Decisions
 |                        Relationship                        |         Decision          |                                                                  Rationale                                                                  |
 | :--------------------------------------------------------: | :-----------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
@@ -42,7 +40,6 @@
 |           Doctor and Practitioner (hypothetical)           |        Inheritance        |                          A Doctor is a specialised type of Practitioner, making this a valid "is-a" relationship.                           |
 |      Appointment → Patient reference (`self.patient`)      | Composition / Association |                     The Python class stores a reference to a Patient object, matching the UML association relationship.                     |
 | Appointment → Practitioner reference (`self.practitioner`) | Composition / Association |                  The Python class stores a reference to a Practitioner object, matching the UML association relationship.                   |
-
 
 # AI Pair-Programming Record
 |         AI contribution          | Conforms? | Decision |                 Reason                 |            Verification             |

@@ -118,14 +118,14 @@ Ask AI to create a simple beginner-friendly Python function that stores patient 
 
 ## Part E - Compare Human and AI Versions 
 
-| Question                     |                                   Human Version                                   |                                                 AI Version |
-| :---------------------------: | :-------------------------------------------------------------------------------: | :---------------------------------------------------------: |
-| Easy to understand?          |                     Yes. Simple variable and print statements                     |                    Yes, but uses a function and dictionary |
-| Runs successfully?           |                                        Yes                                        |                                                        Yes |
-| Uses only required features? |                        Yes, but only basic python features                        |                                                        Yes |
-| Adds assumptions?            | Yes, as the appointment details are stored as separate variables and time is text | Yes, it assumes appointments should be stored dictionaries |
-| Handles errors?              |                          No validation or error handling                          |                            No validation or error handling |
-| Could I explain it?          |                                      Yes Yes                                      |
+|           Question           |                                   Human Version                                   |                         AI Version                         |
+| :--------------------------: | :-------------------------------------------------------------------------------: | :--------------------------------------------------------: |
+|     Easy to understand?      |                     Yes. Simple variable and print statements                     |          Yes, but uses a function and dictionary           |
+|      Runs successfully?      |                                        Yes                                        |                            Yes                             |
+| Uses only required features? |                        Yes, but only basic python features                        |                            Yes                             |
+|      Adds assumptions?       | Yes, as the appointment details are stored as separate variables and time is text | Yes, it assumes appointments should be stored dictionaries |
+|       Handles errors?        |                          No validation or error handling                          |              No validation or error handling               |
+|     Could I explain it?      |                                        Yes                                        |                            Yes                             |
 
 ## Part F - Verify Behaviour 
 
@@ -134,17 +134,25 @@ Ask AI to create a simple beginner-friendly Python function that stores patient 
 - Two appointments for the same practitioner/time
 - Strange input such as patient_name=None or appointment_time=None
 
-**Test 1:** `Create_appointment("James", "none", 06/09/2026 10:30 AM)`\
-**Result:** `Crashed with ValueError: Practitioner name cannot be empty. Please try again.`\
-**Limitation:** The function does not handle empty practitioner names gracefully. It raises a ValueError, which is appropriate, but the user experience could be improved by allowing the user to re-enter the practitioner name without crashing the program.
+**Test 1:** `Create_appointment("John Doe", "Dr Phil", 06/09/2026 10:30 AM)`\
+**Result:** task1.py displays two appointments using variables and print statements. After correcting the indentation in task1_enhanced.py, it stores the two appointments in a list of dictionaries and displays them using a function.\
+**Limitation:** Both versions use hardcoded appointment details, so the user cannot enter appointment information interactively.
 
-**Test 2:** `Create_appointment("John Doe", "Dr Phil", "06/09/2026 10:30 AM")`\
-**Result:** `Successfully created the appointment and added it to the appointments list.`\
-**Limitation:** The function does not check for duplicate appointments. If the same appointment is created again, it will be added to the list without any warning or error. 
+**Test 2:** `Create_appointment("", "Dr Phil", "06/09/2026 10:30 AM")`\
+**Result:** task1.py would display the appointment with a blank patient name because it has no input validation. The enhanced version raises a ValueError with the message "Patient name cannot be empty".\
+**Limitation:** The enhanced version validates the patient name only. It does not validate blank practitioner names or appointment times.
 
-**Test 3:** `Create_appointment("none", "none", "none") `\
-**Result:** `Crashed with ValueError: Patient name cannot be empty. Please try again.`\
-**Limitation:** The function does not check for duplicate appointments. If the same appointment is created 
+**Test 3:**
+```python
+Create_appointment("", "Dr Phil", "06/09/2026 10:30 AM")
+Create_appointment("", "Dr Phil", "06/09/2026 10:30 AM")
+```
+**Result:** Both appointments are added to the list because the enhanced version does not check for scheduling conflicts.\
+**Limitation:** Multiple patients can be booked with the same practitioner at the same time, potentially creating conflicting appointments. The original version also has no conflict checking.
+
+**Test 4:** `book_appointment(None, "Dr Phil", "2026-09-06 10:30 AM")`\
+**Result:** The enhanced version raises a ValueError when the patient name is None, because None is treated as a false value by the validation check. However, it accepts None as the appointment time because that field is not validated. The original version has no validation and would display hardcoded values without checking them.
+**Limitation:** The enhanced version only validates the patient name and does not ensure that all required appointment details are valid.
 
 ## Part G - Improve One Thing 
 **Choose exactly one controlled improvement, for example: if not patient_name: raise ValueError("Patient name cannot be empty")**\
