@@ -10,12 +10,13 @@ class Patient:
     def add_appointment(self, appointment) -> None:
         self.__appointment.append(appointment)
 
-    def view_history(self) -> None:
-        if not self.__appointment:
-            print("No appointment history found.")
-        else:
-            for appointment in self.__appointment:
-                print(appointment)
+    def view_history(self, appointments: list) -> list:
+        """Return appointments belonging to this patient."""
+        return [
+            appointment
+            for appointment in appointments
+            if appointment.patient == self
+        ]
 
     @property
     def patient_id(self) -> int:

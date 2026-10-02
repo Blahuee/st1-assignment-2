@@ -4,8 +4,8 @@ class Practitioner:
             raise ValueError("Practitioner ID must be positive")
         
         self.__practitioner_id = practitioner_id
-        self.practitioner_name = practitioner_name
-        self.specialty = specialty
+        self.__practitioner_name = practitioner_name
+        self.__specialty = specialty
 
     @property
     def practitioner_id(self) -> int:
@@ -14,13 +14,6 @@ class Practitioner:
     @property
     def practitioner_name(self) -> str:
         return self.__practitioner_name
-
-    @practitioner_name.setter
-    def practitioner_name(self, new_practitioner_name: str) -> None:
-        if not isinstance(new_practitioner_name, str) or not new_practitioner_name.strip():
-            raise ValueError("Practitioner name cannot be empty")
-
-        self.__practitioner_name = new_practitioner_name
 
     @property
     def specialty(self) -> str:

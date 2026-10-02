@@ -2,9 +2,8 @@ from patient import Patient
 from practitioner import Practitioner
 from appointment import Appointment, AppointmentStatus
 from datetime import datetime
-# -----------------------------
+
 # CREATE OBJECTS
-# -----------------------------
 
 dr_smith = Practitioner(
     1,
@@ -46,7 +45,7 @@ appointment_2 = Appointment(
 
 appointment_3 = Appointment(
     1003,
-    datetime(2026, 10, 10, 11, 0),
+    datetime(2026, 10, 1, 11, 0),
     patient_1,
     dr_jones
 )
@@ -87,3 +86,20 @@ for appointment in schedule:
         f"Patient: {appointment.patient.patient_name} | "
         f"Time: {appointment.appointment_datetime}"
     )
+
+# VIEW PATIENT 1'S APPOINTMENT HISTORY
+
+print(f"\nAppointment history for {patient_1.patient_name}")
+history = patient_1.view_history(all_appointments)
+for appointment in history:
+    print(
+        f"Appointment ID: {appointment.appointment_id} | "
+        f"Practitioner: {appointment.practitioner.practitioner_name} | "
+        f"Time: {appointment.appointment_datetime}"
+    )
+
+# CANCEL APPOINTMENT 2
+
+print(f"\nCancelling appointment ID: {appointment_2.appointment_id}")
+appointment_2.cancel()
+print(f"Appointment ID: {appointment_2.appointment_id} status: {appointment_2.status.value}")
