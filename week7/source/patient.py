@@ -1,8 +1,21 @@
+from appointment import Appointment
+
 class Patient:
-    def __init__(self, patient_id: int, patient_name: str, contact: int) -> None:
+    def __init__(self, patient_id: int, patient_name: str, contact: str) -> None:
         self.__patient_id = patient_id
         self.__patient_name = patient_name
         self.__contact = contact
+        self.__appointment = []
+
+    def add_appointment(self, appointment) -> None:
+        self.__appointment.append(appointment)
+
+    def view_history(self) -> None:
+        if not self.__appointment:
+            print("No appointment history found.")
+        else:
+            for appointment in self.__appointment:
+                print(appointment)
 
     @property
     def patient_id(self) -> int:
@@ -23,18 +36,20 @@ class Patient:
              self.__patient_name = new_patient_name
 
     @property
-    def contact(self) -> int:
+    def contact(self) -> str:
         return self.__contact
 
     @contact.setter
-    def contact(self, new_contact: int) -> None:
-        """_summary_ validate int value and no. of digits in new content
+    def contact(self, new_contact: str) -> None:
+        """_summary_ validate str value and no. of digits in new content
 
         Args:
-            new_contact (int): patient new contact number
+            new_contact (str): patient new contact number
         """
-        if isinstance(new_contact, int) and new_contact >= 0 and len(str(abs(new_contact))) in (9, 10):
+        if (isinstance(new_contact, str) and new_contact.isdigit() and len(new_contact) == 10):
             self.__contact = new_contact
+        else:
+            raise ValueError("Contact number must contain exactly 10 digits.")
 
     def __str__(self) -> str:
         return f"{self.patient_id} has name {self.__patient_name} with contact: {self.contact}"

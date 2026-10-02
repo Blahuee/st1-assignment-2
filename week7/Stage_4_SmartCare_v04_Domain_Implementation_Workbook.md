@@ -5,7 +5,7 @@
 |               patient_id               |          `self.patient_id`           |     Yes      |         Patient identifier          |
 |                  name                  |             `self.name`              |     Yes      |            Patient name             |
 |            contact_details             |        `self.contact_details`        |     Yes      |         Contact information         |
-|             view_history()             |       `def view_history(self)`       |     Yes      |        Method stub included         |
+|             view_history()             |       `def view_history(self)`       |     Yes      | Displays appointment history for a patient |
 |              Practitioner              |         `class Practitioner`         |     Yes      |      Domain class implemented       |
 |            practitioner_id             |        `self.practitioner_id`        |     Yes      |       Practitioner identifier       |
 |               specialty                |           `self.specialty`           |     Yes      |       Practitioner specialty        |
