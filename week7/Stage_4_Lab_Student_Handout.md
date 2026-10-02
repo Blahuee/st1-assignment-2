@@ -1,2 +1,4 @@
 # Reflection
-Which AI-generated part did you modify or reject? Why? How did the approved design constrain the AI?
+**Which AI-generated part did you modify or reject? Why? How did the approved design constrain the AI?**\
+I modified some of the AI-generated code because it suggested storing appointment lists inside the Patient and Practitioner classes. I rejected this because it was not part of the approved UML design. Instead, I used view_history() and view_schedule() to filter appointments from the existing appointment list.
+The approved design constrained the AI by limiting the solution to the classes, attributes, and methods defined in the UML. This helped me avoid adding unnecessary features and keep the implementation consistent with the SmartCare domain model.
