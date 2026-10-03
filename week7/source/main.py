@@ -1,12 +1,3 @@
-"""
-File: main.py
-Subject: Software Technology 1 (4483)
-Purpose: Demonstrates the implementation of the SmartCare system based on the approved UML design
-
-Author: Alicia Hurst
-Student ID: u3323805
-"""
-
 from patient import Patient
 from practitioner import Practitioner
 from appointment import Appointment, AppointmentStatus
@@ -139,5 +130,13 @@ print("\nTesting invalid patient contact")
 
 try:
     patient_2.contact = "123"
+except ValueError as error:
+    print(f"Expected error: {error}")
+
+## TESTING - BLANK PATIENT NAME
+
+print(f"\nTesting invalid patient name")
+try:
+    patient_2.patient_name = ""
 except ValueError as error:
     print(f"Expected error: {error}")

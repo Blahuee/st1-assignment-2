@@ -67,7 +67,7 @@ The following changes were made:\
 The Appointment implementation introduced an AppointmentStatus enum with the values SCHEDULED, CANCELLED, and COMPLETED. The UML was updated to represent this enumeration because Appointment.status uses AppointmentStatus as its type.
 
 2. **Added association multiplicities**\
-The relationships between Patient, Appointment, and Practitioner were updated to show that one patient can have zero or many appointments and one practitioner can have zero or many appointments. Each appointment is associated with one patient and one practitioner.
+The relationships between Patient, Appointment, and Practitioner were updated to show that one patient can have zero or multiple appointments and one practitioner can have zero or multiple appointments. Each appointment is associated with one patient and one practitioner.
 
 3. **Updated method parameters**\
 The UML method signatures were updated to better reflect the implemented methods. view_history() and view_schedule() now show the appointments parameter. The Appointment methods also show the parameters used by reschedule() and check_conflict().

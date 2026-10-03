@@ -139,7 +139,7 @@ Ask AI to create a simple beginner-friendly Python function that stores patient 
 book_appointment(
     "John Doe",
     "Dr Phil",
-    "06/09/2026 10:30 AM
+    "06/09/2026 10:30 AM"
 )
 ```
 **Result:** task1.py displays two appointments using variables and print statements. After correcting the indentation in task1_enhanced.py, it stores the two appointments in a list of dictionaries and displays them using a function.\
@@ -164,7 +164,7 @@ book_appointment(
     "06/09/2026 10:30 AM"
 )
 book_appointment(
-    "John Doe",
+    "Jane Doe",
     "Dr Phil",
     "06/09/2026 10:30 AM"
 )

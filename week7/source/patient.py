@@ -1,5 +1,7 @@
 class Patient:
     def __init__(self, patient_id: int, patient_name: str, contact: str) -> None:
+        if not isinstance(patient_name, str) or not patient_name.strip():
+            raise ValueError("Patient name cannot be empty")
         self.__patient_id = patient_id
         self.__patient_name = patient_name
         self.__contact = contact
@@ -23,12 +25,14 @@ class Patient:
     @patient_name.setter
     def patient_name(self, new_patient_name: str) -> None:
         """_summary_ validate str not duplicate
-        
-                Args:
-                    new_patient_name (str): patient new name eg last name
-                """
-        if isinstance(new_patient_name, str) and new_patient_name:
-             self.__patient_name = new_patient_name
+
+        Args:
+            new_patient_name (str): patient new name eg. last name
+        """
+        if not isinstance(new_patient_name, str) or not new_patient_name.strip():
+            raise ValueError("Patient name cannot be empty")
+
+        self.__patient_name = new_patient_name
 
     @property
     def contact(self) -> str:
