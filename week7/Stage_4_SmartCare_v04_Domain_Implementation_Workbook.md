@@ -26,7 +26,6 @@
 |               `CANCELLED`               |                  `AppointmentStatus.CANCELLED`                  |     Yes      |                         Valid appointment status                         |
 |               `COMPLETED`               |                  `AppointmentStatus.COMPLETED`                  |     Yes      |                         Valid appointment status                         |
 
-
 # Domain Invariants
 |    Class     |                           Invariant / Rule                            |                                                         How Protected                                                         |
 | :----------: | :-------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: |
