@@ -1,23 +1,13 @@
 from enum import Enum
 from datetime import datetime
 
-
 class AppointmentStatus(Enum):
     SCHEDULED = "SCHEDULED"
     CANCELLED = "CANCELLED"
     COMPLETED = "COMPLETED"
 
-
 class Appointment:
-    def __init__(
-        self,
-        appointment_id: int,
-        appointment_datetime: datetime,
-        patient,
-        practitioner,
-        status: AppointmentStatus = AppointmentStatus.SCHEDULED
-    ) -> None:
-
+    def __init__(self, appointment_id: int, appointment_datetime: datetime, patient, practitioner, status: AppointmentStatus = AppointmentStatus.SCHEDULED) -> None:
         self.__appointment_id = appointment_id
         self.__appointment_datetime = appointment_datetime
         self.__patient = patient

@@ -58,8 +58,8 @@ Act as a tutor. Explain this code and identify potential problems. Do not provid
 |          Whitespace-only input          |   X    |         |           |              |
 |      Appointment time is just text      |   X    |         |           |              |
 |    Program crashes on invalid input     |   X    |         |           |              |
-|         Duplicate appointments          |   X    |
-| Data only exists while the program runs |   X    |
+|         Duplicate appointments          |   X    |         |           |              |
+| Data only exists while the program runs |   X    |         |           |              |
 
 ## Decide
 **For each significant suggestion: Accept / Modify / Reject / Keep unverified.**

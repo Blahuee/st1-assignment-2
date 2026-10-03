@@ -134,25 +134,43 @@ Ask AI to create a simple beginner-friendly Python function that stores patient 
 - Two appointments for the same practitioner/time
 - Strange input such as patient_name=None or appointment_time=None
 
-**Test 1:** `Create_appointment("John Doe", "Dr Phil", 06/09/2026 10:30 AM)`\
+**Test 1:** 
+```python
+book_appointment(
+    "John Doe",
+    "Dr Phil",
+    "06/09/2026 10:30 AM
+)
+```
 **Result:** task1.py displays two appointments using variables and print statements. After correcting the indentation in task1_enhanced.py, it stores the two appointments in a list of dictionaries and displays them using a function.\
 **Limitation:** Both versions use hardcoded appointment details, so the user cannot enter appointment information interactively.
 
-**Test 2:** `Create_appointment("", "Dr Phil", "06/09/2026 10:30 AM")`\
-**Result:** task1.py would display the appointment with a blank patient name because it has no input validation. The enhanced version raises a ValueError with the message "Patient name cannot be empty".\
-**Limitation:** The enhanced version validates the patient name only. It does not validate blank practitioner names or appointment times.
+**Test 2:**
+```python
+book_appointment(
+    "",
+    "Dr Phil",
+    "06/09/2026 10:30 AM"
+)
+```
+**Result:** The enhanced version raises a ValueError when the patient name is a blank string, because empty strings are treated as a false value by the validation check. However, it accepts an empty-string as the appointment time because that field is not validated. The original version has no validation and would display hardcoded values without checking them.
+**Limitation:** The enhanced version only validates the patient name and does not ensure that all required appointment details are valid.
 
 **Test 3:**
 ```python
-Create_appointment("", "Dr Phil", "06/09/2026 10:30 AM")
-Create_appointment("", "Dr Phil", "06/09/2026 10:30 AM")
+book_appointment(
+    "John Doe",
+    "Dr Phil",
+    "06/09/2026 10:30 AM"
+)
+book_appointment(
+    "John Doe",
+    "Dr Phil",
+    "06/09/2026 10:30 AM"
+)
 ```
 **Result:** Both appointments are added to the list because the enhanced version does not check for scheduling conflicts.\
 **Limitation:** Multiple patients can be booked with the same practitioner at the same time, potentially creating conflicting appointments. The original version also has no conflict checking.
-
-**Test 4:** `book_appointment(None, "Dr Phil", "2026-09-06 10:30 AM")`\
-**Result:** The enhanced version raises a ValueError when the patient name is None, because None is treated as a false value by the validation check. However, it accepts None as the appointment time because that field is not validated. The original version has no validation and would display hardcoded values without checking them.
-**Limitation:** The enhanced version only validates the patient name and does not ensure that all required appointment details are valid.
 
 ## Part G - Improve One Thing 
 **Choose exactly one controlled improvement, for example: if not patient_name: raise ValueError("Patient name cannot be empty")**\

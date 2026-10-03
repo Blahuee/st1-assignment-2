@@ -1,8 +1,16 @@
-## BEFORE AI SUGGESTIONS WERE IMPLEMENTED
+"""
+File: Smartcare_v01.py
+Subject: Software Technology 1 (4483)
+Purpose: SmartCare appointment booking prototype
 
-#######################################################################################################################################################
+Author: Alicia Hurst
+Student ID: u3323805
+"""
+
+## BEFORE AI SUGGESTIONS WERE IMPLEMENTED ##
+
 ##  CREATE APPOINTMENT FUNCTION
-#######################################################################################################################################################
+
 # def create_appointment(patient_name, practitioner_name, appointment_time):
 #     if not patient_name:
 #         raise ValueError("Patient name cannot be empty")
@@ -19,9 +27,8 @@
 #     appointments.append(appointment)
 #     return appointment
 
-#######################################################################################################################################################
 ##  LIST APPOINTMENTS FUNCTION
-#######################################################################################################################################################
+
 # def list_appointments():
 #     if not appointments:
 #         print("No appointments recorded.")
@@ -29,8 +36,6 @@
 
 #     for appointment in appointments:
 #         print(f"Patient: {appointment['patient_name']} | Practitioner: {appointment['practitioner_name']} | Time: {appointment['appointment_time']}")
-
-#######################################################################################################################################################
 
 ## DECLARE EMPTY APPOINTMENTS LIST ARRAY
 # appointments = []
@@ -50,9 +55,8 @@
 ## IMPORT MODULE
 import datetime as dt
 
-#######################################################################################################################################################
 ##  CREATE APPOINTMENT FUNCTION
-#######################################################################################################################################################
+
 def create_appointment(patient_name, practitioner_name, appointment_time):
     if not patient_name:
         raise ValueError("Patient name cannot be empty")
@@ -83,9 +87,8 @@ def create_appointment(patient_name, practitioner_name, appointment_time):
     appointments.append(appointment)
     return appointment
 
-#######################################################################################################################################################
 ##  LIST APPOINTMENTS FUNCTION
-#######################################################################################################################################################
+
 def list_appointments():
     if not appointments:
         print("No appointments recorded.")
@@ -93,8 +96,6 @@ def list_appointments():
 
     for appointment in appointments:
         print(f"Patient: {appointment['patient_name']} | Practitioner: {appointment['practitioner_name']} | Time: {appointment['appointment_time']}")
-
-#######################################################################################################################################################
 
 ## DECLARE EMPTY APPOINTMENTS LIST ARRAY
 appointments = []

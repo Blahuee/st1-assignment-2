@@ -21,7 +21,7 @@
 ### Practitioner
 |      Responsibilities      | Collaborators |
 | :------------------------: | :-----------: |
-| Store practitioner details |  Appointmnt   |
+| Store practitioner details |  Appointment  |
 | View appointment schedule  |    Patient    |
 
 ### Appointment

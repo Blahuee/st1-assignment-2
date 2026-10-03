@@ -5,7 +5,7 @@ class Practitioner:
         
         self.__practitioner_id = practitioner_id
         self.__practitioner_name = practitioner_name
-        self.__specialty = specialty
+        self.specialty = specialty
 
     @property
     def practitioner_id(self) -> int:

@@ -1,14 +1,8 @@
-from appointment import Appointment
-
 class Patient:
     def __init__(self, patient_id: int, patient_name: str, contact: str) -> None:
         self.__patient_id = patient_id
         self.__patient_name = patient_name
         self.__contact = contact
-        self.__appointment = []
-
-    def add_appointment(self, appointment) -> None:
-        self.__appointment.append(appointment)
 
     def view_history(self, appointments: list) -> list:
         """Return appointments belonging to this patient."""
